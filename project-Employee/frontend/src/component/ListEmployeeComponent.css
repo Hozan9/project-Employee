@@ -1,0 +1,52 @@
+.AddEmployee {
+    font-size: 20px;
+    line-height: 7vh;
+    color: rgba(255, 255, 255, 0.73);
+    border: 1px rgba(40, 47, 52, 0.85) solid;
+    background-color: black;
+}
+
+.AddEmployee:hover {
+    background-color: rgba(0, 0, 0, 0.38);
+}
+.ListEmployee {
+    font-family: Monospaced;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    color: rgba(0, 0, 0, 0.98);
+    padding: 1rem;
+    padding-left: 30.5rem;
+}
+
+
+.container {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    line-height: 40px;
+}
+.table{
+margin: 3rem auto;
+    border-radius: 1rem;
+    border-collapse: collapse;
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.98);
+    overflow: hidden;
+    max-width: 80rem;
+}
+.tableHead{
+    font-size: 1.2rem;
+    background-color: rgba(40, 47, 52, 0.85);
+    color:white;
+}
+.th,td{
+    border:1px solid rgba(40, 47, 52, 0.85);
+    min-width: 10rem;
+    padding: 1.5rem;
+    line-height: 50px;
+}
+.td{
+    font-size: 1rem;
+}
