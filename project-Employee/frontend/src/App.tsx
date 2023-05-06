@@ -7,7 +7,11 @@ import ListEmployeeComponent from "./component/ListEmployeeComponent";
 import { BrowserRouter , Routes ,Route } from "react-router-dom";
 import {employee, NewEmployee} from "./model/employee";
 import axios from "axios";
+import LoginPage from "./LoginPage";
+import useUser from "./useUser";
+import ProtectedRoutes from "./ProtectedRoutes";
 function App() {
+    const {user, login} = useUser()
     const [employees,setEmployees] = useState<employee[]>([])
 
     useEffect(() => {
@@ -25,22 +29,21 @@ function App() {
             })
             .catch(console.error)
     }
-
   return (
         <BrowserRouter>
             <HeaderComponent />
             <div className="container">
                 <Routes>
                     <Route path="/" element={<ListEmployeeComponent employee={employees}/>}  />
-                    <Route path="/employee" element={<ListEmployeeComponent employee={employees} />} />
+                    <Route path="/employees" element={<ListEmployeeComponent employee={employees} />} />
                     <Route path="/add-employee" element={<AddEmployeeComponent addEmployee={addEmployee} />} />
                     <Route path="/add-employee/:id" element={<AddEmployeeComponent addEmployee={addEmployee}/>} />
+                    <Route path='/login' element={<LoginPage onLogin={login}/>}/>
+                <Route element={<ProtectedRoutes user={user} />}></Route>
                 </Routes>
-
             </div>
             <FooterComponent />
         </BrowserRouter>
-
   );
 }
 export default App;

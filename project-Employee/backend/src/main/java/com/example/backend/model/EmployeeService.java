@@ -1,7 +1,9 @@
 package com.example.backend.model;
+
 import com.example.backend.service.IdService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -13,6 +15,7 @@ public class EmployeeService{
 
 
     public List<Employee> findAll(){
+
         return employeeRepository.findAll();
     }
 
