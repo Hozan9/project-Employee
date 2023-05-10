@@ -4,10 +4,19 @@ import "./ListEmployeeComponent.css"
 import {employee} from "../model/employee";
 import {toast} from "react-toastify";
 import axios from "axios";
-export default function ListEmployeeComponent(props: { employee: employee[] }) {
+import "./AddEmployeeComponent"
+type Props ={
+    employee:employee[],
+    deleteEmployee:(id: string) => void
+
+}
+export default function ListEmployeeComponent(props: Props) {
+
          const [employeeArray, setEmployeeArray] = useState<employee[]>([])
 
-         useEffect(() => {
+
+
+    useEffect(() => {
                  getEmployeeArray()
              }, [])
 
@@ -16,11 +25,17 @@ export default function ListEmployeeComponent(props: { employee: employee[] }) {
                   .then(response => {
                       setEmployeeArray([...employeeArray, response.data])
                       toast.success("Successfully added!")
-
               })
-                      .catch(() => toast.error("Failed to add product!"))
-
+                      .catch(() => toast.error("Failed to add Employee!"))
               }
+
+    function onDeleteClick( id:string) {
+        props.deleteEmployee(id)
+
+
+
+    }
+
 
           return (
             <div className={"container"}>
@@ -46,8 +61,10 @@ export default function ListEmployeeComponent(props: { employee: employee[] }) {
                             <td className={"td"}>{employee.lastName}</td>
                             <td className={"td"}>{employee.email}</td>
                             <td>
-                                <button  >Update</button> {""}
-                                <button  >Delete</button>
+                                <NavLink className={"btn btn-info"} to ={`/add-employee/${employee.id}`}>Update</NavLink>
+                                <button  className={"btn btn-danger"}
+                                         onClick={()=>onDeleteClick(employee.id)}
+                                >Delete</button>
                             </td>
                         </tr>
                     )}

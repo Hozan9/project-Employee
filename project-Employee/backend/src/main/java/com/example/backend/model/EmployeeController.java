@@ -4,12 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-
-
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/")
 @RequiredArgsConstructor
 public class EmployeeController {
 
@@ -33,6 +32,13 @@ public class EmployeeController {
     @PostMapping("/employees")
     public ResponseEntity<Employee> postEmployee(@RequestBody Employee employee) {
         return new ResponseEntity<>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
+    }
+    @PutMapping(path = {"/employees/{id}"})
+    Employee update(@PathVariable String id,@RequestBody Employee employee){
+        if(!employee.id().equals(id)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"The id in the url does not match the request bodys id");
+       }
+        return  employeeService.update(employee);
     }
 
     @DeleteMapping("/employees/{id}")

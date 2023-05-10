@@ -29,21 +29,45 @@ function App() {
             })
             .catch(console.error)
     }
+
+    function updateEmployee(employee: employee) : void{
+        axios.put(`/api/employees/${employee.id}`, employee)
+            .then((putEmployeeResponse) => {
+                setEmployees(employees.map(currentEmployee => {
+                    if (currentEmployee.id === employee.id) {
+                        return putEmployeeResponse.data
+                    }
+                    else {
+                        return currentEmployee
+                    }
+                }))
+            })
+            .catch(console.error)
+    }
+    function deleteEmployee(id:string){
+        axios.delete('/api/employees/'+id)
+            .then(() => {
+                setEmployees(employees.filter((employees)=> employees.id !== id))
+            })
+            .catch(console.error)
+    }
+
   return (
         <BrowserRouter>
             <HeaderComponent />
             <div className="container">
                 <Routes>
-                    <Route path="/" element={<ListEmployeeComponent employee={employees}/>}  />
-                    <Route path="/employees" element={<ListEmployeeComponent employee={employees} />} />
-                    <Route path="/add-employee" element={<AddEmployeeComponent addEmployee={addEmployee} />} />
-                    <Route path="/add-employee/:id" element={<AddEmployeeComponent addEmployee={addEmployee}/>} />
+                    <Route path="/" element={<ListEmployeeComponent employee={employees} deleteEmployee={deleteEmployee} />}  />
+                    <Route path="/employees" element={<ListEmployeeComponent employee={employees} deleteEmployee={deleteEmployee} />} />
+                    <Route path="/add-employee" element={<AddEmployeeComponent  addEmployee={addEmployee} updateEmployee={updateEmployee}  />} />
+                    <Route path="/add-employee/:id" element={<AddEmployeeComponent addEmployee={addEmployee} updateEmployee={updateEmployee}/>} />
                     <Route path='/login' element={<LoginPage onLogin={login}/>}/>
                 <Route element={<ProtectedRoutes user={user} />}></Route>
                 </Routes>
             </div>
             <FooterComponent />
         </BrowserRouter>
-  );
+  )
 }
+
 export default App;
