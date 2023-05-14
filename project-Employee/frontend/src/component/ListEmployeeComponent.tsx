@@ -28,19 +28,16 @@ export default function ListEmployeeComponent(props: Props) {
               })
                       .catch(() => toast.error("Failed to add Employee!"))
               }
-
     function onDeleteClick( id:string) {
         props.deleteEmployee(id)
-
-
-
     }
-
-
           return (
             <div className={"container"}>
+
                 <NavLink className={"AddEmployee"} to={"/add-employee"}>
                     Add Employee </NavLink>
+
+
                     <h2 className={"ListEmployee"}>List Employee</h2>
 
               <table className={"table"}>
@@ -61,8 +58,8 @@ export default function ListEmployeeComponent(props: Props) {
                             <td className={"td"}>{employee.lastName}</td>
                             <td className={"td"}>{employee.email}</td>
                             <td>
-                                <NavLink className={"btn btn-info"} to ={`/add-employee/${employee.id}`}>Update</NavLink>
-                                <button  className={"btn btn-danger"}
+                                <NavLink className={"update"} to ={`/add-employee/${employee.id}`}>Update</NavLink>
+                                <button  className={"delete"}
                                          onClick={()=>onDeleteClick(employee.id)}
                                 >Delete</button>
                             </td>

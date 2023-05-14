@@ -7,9 +7,9 @@ export default function HeaderComponent() {
         <div className={"HeaderComponent"}>
             <div className={"HeaderContainer"}>
                 <a> Employee Management System</a>
+             <NavLink className={"LoginPage"} to="/login">
+                Login </NavLink>
             </div>
-            <NavLink to="/login" >Login</NavLink>
-
         </div>
 
 )

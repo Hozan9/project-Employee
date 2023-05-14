@@ -1,13 +1,15 @@
 import "./AddEmployeeComponent.css"
 import React, { useEffect, useState} from "react";
-import {employee, NewEmployee} from "../model/employee";
+import {NewEmployee} from "../model/employee";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+
  type SaveEmployeeProps = {
     addEmployee: (newEmployee: NewEmployee) => void,
-    updateEmployee: (updateEmployee: employee) => void,
-
-}
+    updateEmployee: (updateEmployee: { firstName: string;
+        lastName: string; id: string;
+        email: string; url: string }) => void
+ }
 const BASE_URL = "/api/employees";
 
 export default function AddEmployeeComponent(props: SaveEmployeeProps) {
@@ -16,7 +18,10 @@ export default function AddEmployeeComponent(props: SaveEmployeeProps) {
     const [lastName, setLastName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const navigate = useNavigate();
-    const newEmployee: NewEmployee = {"firstName": firstName, "lastName": lastName, "email": email}
+    const newEmployee: NewEmployee = {"firstName": firstName,
+        "lastName": lastName, "email": email}
+
+   const [url] = useState<string>("")
 
     const {id} = useParams<{ id: string }>()
     function onSaveEmployee(error: React.MouseEvent<HTMLButtonElement>) {
@@ -24,19 +29,16 @@ export default function AddEmployeeComponent(props: SaveEmployeeProps) {
 
         if (newEmployee.firstName !== "" && newEmployee.lastName !== "" && newEmployee.email) {
             if (id) {
-                props.updateEmployee({id,firstName,lastName,email})
+                props.updateEmployee({id,firstName,lastName,email,url})
                 navigate('/employee')
             } else {
-                props.addEmployee(newEmployee)
-                navigate('/employee')
+                props.addEmployee(newEmployee);
+                navigate('/employees')
             }
             }else{
                 alert("Please,fill in all inputs");
             }
         }
-
-
-
     function title() {
         if (id) {
             return "Update Employee";
@@ -93,7 +95,7 @@ alert(error)
                                        onChange={(event) => setEmail(event.target.value)}/>
                             </div>
                             <button className={"save"} onClick={(error) => onSaveEmployee(error)}>Save</button>
-                            <Link to={"/employee"} className={"cancel"}>Back</Link>
+                            <Link to={"/employees"} className={"cancel"}>Back</Link>
                         </form>
                     </div>
                 </div>

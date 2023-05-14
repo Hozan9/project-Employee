@@ -1,9 +1,14 @@
 .AddEmployee {
-    font-size: 20px;
     line-height: 7vh;
     color: rgba(255, 255, 255, 0.73);
     border: 1px rgba(40, 47, 52, 0.85) solid;
     background-color: black;
+    font-size: 20px;
+    padding: 15px 5px;
+    margin-left: 900px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
 }
 
 .AddEmployee:hover {
@@ -11,13 +16,15 @@
 }
 .ListEmployee {
     font-family: Monospaced;
-    height: 10vh;
+    height: 0.0vh;
     display: flex;
     align-items: center;
     background-color: rgb(255, 255, 255);
     color: rgba(0, 0, 0, 0.98);
-    padding: 1rem;
     padding-left: 30.5rem;
+    font-size: xxx-large;
+    font-weight: bolder;
+    text-align: center;
 }
 
 
@@ -50,3 +57,30 @@ margin: 3rem auto;
 .td{
     font-size: 1rem;
 }
+.update{
+    text-decoration: none;
+
+    font-size: 20px;
+    line-height: 5vh;
+    padding: 10px 28px;
+
+    color: rgba(255, 255, 255, 0.73);
+    border: 1px rgba(40, 47, 52, 0.85) solid;
+    background-color: black;
+}
+.update:hover {
+    background-color: rgba(0, 0, 0, 0.38);
+}
+.delete{
+    font-size: 20px;
+    line-height: 5vh;
+    padding: 4px 32px;
+
+    color: rgba(255, 255, 255, 0.73);
+    border: 1px rgba(40, 47, 52, 0.85) solid;
+    background-color: black;
+}
+.delete:hover{
+    background-color: rgba(0, 0, 0, 0.38);
+}
+

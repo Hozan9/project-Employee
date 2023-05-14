@@ -13,6 +13,10 @@ import ProtectedRoutes from "./ProtectedRoutes";
 function App() {
     const {user, login} = useUser()
     const [employees,setEmployees] = useState<employee[]>([])
+const [url,setUrl] = useState()
+
+
+
 
     useEffect(() => {
         loadAllEmployees()
@@ -25,11 +29,10 @@ function App() {
     function addEmployee(newEmployee: NewEmployee) {
         axios.post("/api/employees",newEmployee)
             .then((addEmployeeResponse) =>{
-                setEmployees([...employees, addEmployeeResponse.data])
+                setEmployees([addEmployeeResponse.data,...employees])
             })
             .catch(console.error)
     }
-
     function updateEmployee(employee: employee) : void{
         axios.put(`/api/employees/${employee.id}`, employee)
             .then((putEmployeeResponse) => {
@@ -51,17 +54,20 @@ function App() {
             })
             .catch(console.error)
     }
-
-  return (
+    return (
         <BrowserRouter>
             <HeaderComponent />
             <div className="container">
                 <Routes>
                     <Route path="/" element={<ListEmployeeComponent employee={employees} deleteEmployee={deleteEmployee} />}  />
                     <Route path="/employees" element={<ListEmployeeComponent employee={employees} deleteEmployee={deleteEmployee} />} />
-                    <Route path="/add-employee" element={<AddEmployeeComponent  addEmployee={addEmployee} updateEmployee={updateEmployee}  />} />
-                    <Route path="/add-employee/:id" element={<AddEmployeeComponent addEmployee={addEmployee} updateEmployee={updateEmployee}/>} />
-                    <Route path='/login' element={<LoginPage onLogin={login}/>}/>
+                    <Route path="/add-employee" element={<AddEmployeeComponent addEmployee={addEmployee}
+                                                                               updateEmployee={updateEmployee}
+                                                                                  />} />
+                    <Route path="/add-employee/:id" element={<AddEmployeeComponent addEmployee={addEmployee}
+                                                                                   updateEmployee={updateEmployee}
+                                                                                     />} />
+                    <Route path='/login' element={<LoginPage onLogin={login}  />}/>
                 <Route element={<ProtectedRoutes user={user} />}></Route>
                 </Routes>
             </div>
