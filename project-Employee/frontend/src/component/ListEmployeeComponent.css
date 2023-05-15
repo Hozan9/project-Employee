@@ -1,0 +1,86 @@
+.AddEmployee {
+    line-height: 7vh;
+    color: rgba(255, 255, 255, 0.73);
+    border: 1px rgba(40, 47, 52, 0.85) solid;
+    background-color: black;
+    font-size: 20px;
+    padding: 15px 5px;
+    margin-left: 900px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.AddEmployee:hover {
+    background-color: rgba(0, 0, 0, 0.38);
+}
+.ListEmployee {
+    font-family: Monospaced;
+    height: 0.0vh;
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    color: rgba(0, 0, 0, 0.98);
+    padding-left: 30.5rem;
+    font-size: xxx-large;
+    font-weight: bolder;
+    text-align: center;
+}
+
+
+.container {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    line-height: 40px;
+}
+.table{
+margin: 3rem auto;
+    border-radius: 1rem;
+    border-collapse: collapse;
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.98);
+    overflow: hidden;
+    max-width: 80rem;
+}
+.tableHead{
+    font-size: 1.2rem;
+    background-color: rgba(40, 47, 52, 0.85);
+    color:white;
+}
+.th,td{
+    border:1px solid rgba(40, 47, 52, 0.85);
+    min-width: 10rem;
+    padding: 1.5rem;
+    line-height: 50px;
+}
+.td{
+    font-size: 1rem;
+}
+.update{
+    text-decoration: none;
+
+    font-size: 20px;
+    line-height: 5vh;
+    padding: 10px 28px;
+
+    color: rgba(255, 255, 255, 0.73);
+    border: 1px rgba(40, 47, 52, 0.85) solid;
+    background-color: black;
+}
+.update:hover {
+    background-color: rgba(0, 0, 0, 0.38);
+}
+.delete{
+    font-size: 20px;
+    line-height: 5vh;
+    padding: 4px 32px;
+
+    color: rgba(255, 255, 255, 0.73);
+    border: 1px rgba(40, 47, 52, 0.85) solid;
+    background-color: black;
+}
+.delete:hover{
+    background-color: rgba(0, 0, 0, 0.38);
+}
+
