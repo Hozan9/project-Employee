@@ -8,6 +8,14 @@ public  record Employee(
                  String id,
                  String firstName,
                  String lastName,
-                String email
-        ){}
+                String email,
+              String url
+        ){
+
+    public Employee withUrl(String url){
+        return new Employee
+                (id,firstName,lastName,email,url);
+    }
+
+}
 

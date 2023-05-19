@@ -54,7 +54,7 @@ form {
     line-height: 50px;
 }
 /* Center the avatar image inside this container */
-.imgcontainer {
+.imagecontainer {
     text-align:right ;
     margin: 2px 0  2px;
     width: 300px;
