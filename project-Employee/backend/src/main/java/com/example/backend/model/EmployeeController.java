@@ -18,23 +18,26 @@ public class EmployeeController {
     private final EmployeeRepository employeeRepository;
 
     @GetMapping("/employees")
-    public ResponseEntity<List<Employee>> getAllEmployees() {
+    public ResponseEntity<List<Employee>> findAll() {
         return ResponseEntity.ok(employeeService.findAll());
     }
     @GetMapping("employees/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable String id) {
+    public ResponseEntity<Employee> findById(@PathVariable String id) {
         return ResponseEntity.ok(employeeService.findById(id));
     }
     @PostMapping("/employees")
-    public ResponseEntity<Employee> postEmployee(@RequestPart("data")  Employee employee, @RequestPart(name="file",required = false) MultipartFile image) throws IOException {
-        return new ResponseEntity<>(employeeService.saveEmployee(employee,image), HttpStatus.CREATED);
+    public ResponseEntity<Employee> saveEmployee(@RequestPart("data")  Employee employee,
+                                                 @RequestPart(name="file",required = false)
+    MultipartFile image) throws IOException {
+        return new ResponseEntity<>(employeeService.saveEmployee(employee,image),
+                HttpStatus.CREATED);
     }
     @PutMapping(path = {"/employees/{id}"})
     Employee update(@PathVariable String id,@RequestBody Employee employee){
-        if(!employee.id().equals(id)) {
+        if(!employee.id().equals(id)) { // wenn die id employee obj überstimmt mit dem id fahrt
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"The id in the url does not match the request bodys id");
        }
-        return  employeeService.update(employee);
+        return  employeeService.update(employee); // ansonst ruft die ser auf
     }
     @DeleteMapping("/employees/{id}")
     void deleteEmployee(@PathVariable String id) {

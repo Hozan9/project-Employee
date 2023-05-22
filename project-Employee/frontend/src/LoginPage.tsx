@@ -24,8 +24,6 @@ export default function LoginPage(props: Props){
             setImage(event.target.files[0])
         }
     }
-
-
      return(
              <form onSubmit={onSubmit} action={"action_page.html"}
                    method={"post"}>
@@ -34,7 +32,6 @@ export default function LoginPage(props: Props){
                  <div className="imagecontainer">
                      <input className={"postImage"} type={"file"}
                             name="postImg" onChange={onFileChange}/>
-
                  </div>
                  <p></p>
                  <img src={image ? URL.createObjectURL(image): ""}
@@ -51,9 +48,6 @@ export default function LoginPage(props: Props){
                  <input className={"input2"} value={password}
                         placeholder="Enter password" type="password"
                         onChange={e => setPassword(e.target.value)}/>
-
-
-
                  <button className={"login"} type="submit">login</button>
              </div>
             </form>

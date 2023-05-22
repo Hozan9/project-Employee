@@ -21,6 +21,7 @@ class EmployeeServiceTest {
     MultipartFile image = null;
     @BeforeEach
     void setUp() {
+
         employee = new Employee("123", "Lani", "lani", "lani@gmail.com","url");
     }
     @Test
@@ -77,9 +78,9 @@ class EmployeeServiceTest {
         //When
         Employee actual = employeeService.saveEmployee(employee,null);
         //Then
-        verify(idService).createId();
-      verify(employeeRepository).save(employee);
-        assertThat(actual).isEqualTo(employee);
+        verify(idService).createId(); // id  drwst bkait
+      verify(employeeRepository).save(employee); //krekarakan la REpo xazn bkait
+        assertThat(actual).isEqualTo(employee); // krekara xazn krawakanman bdaitawa
     }
    @Test
     void updateEmployeeWhenEmployeeIdExists() {
@@ -90,15 +91,15 @@ class EmployeeServiceTest {
         Employee actual = employeeService.update(employee);
         //Then
         Employee expected = employee;
-        verify(employeeRepository).save(employee);
-        assertThat(actual).isEqualTo(expected);
+        verify(employeeRepository).save(employee); // Repo aktu
+        assertThat(actual).isEqualTo(expected);//AkK Mit ZÜ
     }
 
     @Test
     void deleteEmployeeWhenEmployeeIdExists() {
       employeeRepository.save(employee);
        employeeService.deleteEmployee(employee.id());
-        verify(employeeRepository).deleteById(employee.id());
+        verify(employeeRepository).deleteById (employee.id()); // Repo MIt LÖ
     }
 }
 

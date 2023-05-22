@@ -14,10 +14,7 @@ function App() {
     const {user, login} = useUser()
     const [employees,setEmployees] = useState<employee[]>([])
 const [url,setUrl] = useState()
-
-
-
-
+//F
     useEffect(() => {
         loadAllEmployees()
     },[])
@@ -25,15 +22,15 @@ const [url,setUrl] = useState()
         axios.get("/api/employees")
             .then((getAllEmployeesResponse) =>{setEmployees(getAllEmployeesResponse.data)})
             .catch((error)=> {console.error(error)})
-    }
+    }//F
     function addEmployee(newEmployee: NewEmployee) {
         axios.post("/api/employees",newEmployee)
             .then((addEmployeeResponse) =>{
                 setEmployees([addEmployeeResponse.data,...employees])
             })
             .catch(console.error)
-    }
-    function updateEmployee(employee: employee) : void{
+    }//F
+    function updateEmployee(employee: employee) {
         axios.put(`/api/employees/${employee.id}`, employee)
             .then((putEmployeeResponse) => {
                 setEmployees(employees.map(currentEmployee => {
@@ -59,8 +56,8 @@ const [url,setUrl] = useState()
             <HeaderComponent />
             <div className="container">
                 <Routes>
-                    <Route path="/" element={<ListEmployeeComponent employee={employees} deleteEmployee={deleteEmployee} />}  />
-                    <Route path="/employees" element={<ListEmployeeComponent employee={employees} deleteEmployee={deleteEmployee} />} />
+                    <Route path="/" element={<ListEmployeeComponent employees={employees} deleteEmployee={deleteEmployee} />}  />
+                    <Route path="/employees" element={<ListEmployeeComponent employees={employees} deleteEmployee={deleteEmployee} />} />
                     <Route path="/add-employee" element={<AddEmployeeComponent addEmployee={addEmployee}
                                                                                updateEmployee={updateEmployee}
                                                                                   />} />

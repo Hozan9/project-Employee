@@ -29,7 +29,7 @@ export default function AddEmployeeComponent(props: SaveEmployeeProps) {
 
         if (newEmployee.firstName !== "" && newEmployee.lastName !== "" && newEmployee.email) {
             if (id) {
-                props.updateEmployee({id,firstName,lastName,email,url})
+                props.updateEmployee({id,firstName,lastName,email,url})//props sarawam bang krdwa wala type nasandwma
                 navigate('/employee')
             } else {
                 props.addEmployee(newEmployee);
@@ -38,7 +38,7 @@ export default function AddEmployeeComponent(props: SaveEmployeeProps) {
             }else{
                 alert("Please,fill in all inputs");
             }
-        }
+        }//F
     function title() {
         if (id) {
             return "Update Employee";
@@ -47,25 +47,25 @@ export default function AddEmployeeComponent(props: SaveEmployeeProps) {
         }
     }
 
-    useEffect(() => {
-        if (id) {
-            loadEmployeeById(id)
-        }
-    },
-        [id])
+   useEffect(() => {
+          if (id) {
+              loadEmployeeById(id)
+          }
+      },
+          [id])
 
-    function loadEmployeeById(id: string) {
-         axios.get(`${BASE_URL}/${id}` )
-            .then((response) => {
-                setFirstName(response.data.firstName);
-                setLastName(response.data.lastName);
-                setEmail(response.data.email);
-            })
-            .catch(error => {
-console.log(error);
-alert(error)
-            });
-    }
+      function loadEmployeeById(id: string) {
+           axios.get(`${BASE_URL}/${id}` )
+              .then((response) => {
+                  setFirstName(response.data.firstName);
+                  setLastName(response.data.lastName);
+                  setEmail(response.data.email);
+              })
+              .catch(error => {
+  console.log(error);
+  alert(error)
+              });
+      }
 
     return (
         <div>

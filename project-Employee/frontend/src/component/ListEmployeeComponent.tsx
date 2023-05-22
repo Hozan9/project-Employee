@@ -6,7 +6,7 @@ import {toast} from "react-toastify";
 import axios from "axios";
 import "./AddEmployeeComponent"
 type Props ={
-    employee:employee[],
+    employees:employee[],
     deleteEmployee:(id: string) => void
 
 }
@@ -14,13 +14,11 @@ export default function ListEmployeeComponent(props: Props) {
 
          const [employeeArray, setEmployeeArray] = useState<employee[]>([])
 
-
-
     useEffect(() => {
                  getEmployeeArray()
-             }, [])
+             },[])
 
-              function getEmployeeArray(): void {
+              function getEmployeeArray() {
               axios.get('/api/employees')
                   .then(response => {
                       setEmployeeArray([...employeeArray, response.data])
@@ -51,7 +49,7 @@ export default function ListEmployeeComponent(props: Props) {
                     </tr>
                     </thead>
                     <tbody>
-                    {props.employee.map((employee) =>
+                    {props.employees.map((employee) =>
                         <tr id={employee.id } key={employee.id}>
                             <td className={"td"}>{employee.id} </td>
                             <td className={"td"}>{employee.firstName}</td>
