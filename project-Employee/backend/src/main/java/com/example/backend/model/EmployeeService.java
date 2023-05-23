@@ -15,12 +15,12 @@ public class EmployeeService{
     private final CloudinaryService cloudinaryService;
     public List<Employee> findAll(){
         return employeeRepository.findAll();
-    } // ruft RePo um all Mit Abzu rufen
+    }
     public Employee findById(String id){
         return employeeRepository.findById(id).orElseThrow();
-    } //Op <E> ob aufr
+    }
     public Employee saveEmployee(Employee employee, MultipartFile image) throws IOException {
-        String newId = idService.createId();//neu Id
+        String newId = idService.createId();
         Employee newEmployee = new Employee(
                 newId,
                 employee.firstName(),
@@ -28,15 +28,15 @@ public class EmployeeService{
                 employee.email(),
                 employee.url()
         );
-        if(image != null){ // WEnn Nicht nUll ist
+        if(image != null){
             String url = cloudinaryService.uploadImage(image);
-            newEmployee = newEmployee.withUrl(url); //rasmakanman bdare image übergeben
+            newEmployee = newEmployee.withUrl(url);
         }
-        return employeeRepository.save(newEmployee); // gespeicherte employee obj
+        return employeeRepository.save(newEmployee);
     }
    public Employee update(Employee employee){
 
-       return employeeRepository.save(employee); // Aktu Emplo obj zu speichern
+       return employeeRepository.save(employee);
     }
     public void deleteEmployee(String id){
 

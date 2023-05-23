@@ -13,8 +13,6 @@ import ProtectedRoutes from "./ProtectedRoutes";
 function App() {
     const {user, login} = useUser()
     const [employees,setEmployees] = useState<employee[]>([])
-const [url,setUrl] = useState()
-//F
     useEffect(() => {
         loadAllEmployees()
     },[])
@@ -22,14 +20,16 @@ const [url,setUrl] = useState()
         axios.get("/api/employees")
             .then((getAllEmployeesResponse) =>{setEmployees(getAllEmployeesResponse.data)})
             .catch((error)=> {console.error(error)})
-    }//F
+    }
     function addEmployee(newEmployee: NewEmployee) {
-        axios.post("/api/employees",newEmployee)
+            const data = new FormData()
+            data.append("data",new Blob([JSON.stringify(newEmployee)],{'type':"application/json"}))
+        axios.post("/api/employees",data)
             .then((addEmployeeResponse) =>{
                 setEmployees([addEmployeeResponse.data,...employees])
             })
             .catch(console.error)
-    }//F
+    }
     function updateEmployee(employee: employee) {
         axios.put(`/api/employees/${employee.id}`, employee)
             .then((putEmployeeResponse) => {
@@ -72,5 +72,4 @@ const [url,setUrl] = useState()
         </BrowserRouter>
   )
 }
-
 export default App;

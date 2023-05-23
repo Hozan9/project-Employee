@@ -1,43 +1,20 @@
-import React, {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 import "./ListEmployeeComponent.css"
 import {employee} from "../model/employee";
-import {toast} from "react-toastify";
-import axios from "axios";
 import "./AddEmployeeComponent"
 type Props ={
     employees:employee[],
     deleteEmployee:(id: string) => void
-
 }
 export default function ListEmployeeComponent(props: Props) {
-
-         const [employeeArray, setEmployeeArray] = useState<employee[]>([])
-
-    useEffect(() => {
-                 getEmployeeArray()
-             },[])
-
-              function getEmployeeArray() {
-              axios.get('/api/employees')
-                  .then(response => {
-                      setEmployeeArray([...employeeArray, response.data])
-                      toast.success("Successfully added!")
-              })
-                      .catch(() => toast.error("Failed to add Employee!"))
-              }
     function onDeleteClick( id:string) {
         props.deleteEmployee(id)
     }
           return (
             <div className={"container"}>
-
                 <NavLink className={"AddEmployee"} to={"/add-employee"}>
                     Add Employee </NavLink>
-
-
                     <h2 className={"ListEmployee"}>List Employee</h2>
-
               <table className={"table"}>
                     <thead className={"tableHead"}>
                     <tr>
