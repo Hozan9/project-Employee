@@ -1,16 +1,18 @@
 import  "./HeaderComponent.css"
-import  React from "react";
+import React, {useState} from "react";
 import {NavLink} from "react-router-dom";
 export default function HeaderComponent() {
-
+    const [image] = useState<File>();
     return (
-        <div className={"HeaderComponent"}>
             <div className={"HeaderContainer"}>
-                <a> Employee Management System</a>
+                <div>
+                <a className={"Employee"}> Employee Management System</a>
              <NavLink className={"LoginPage"} to="/login">
                 Login </NavLink>
+                </div>
+                <p></p>
+                <img src={image ? URL.createObjectURL(image): ""}
+                     className="Img" width={"20"} />
             </div>
-        </div>
-
 )
 }

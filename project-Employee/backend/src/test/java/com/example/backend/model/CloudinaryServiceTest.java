@@ -16,9 +16,9 @@ class CloudinaryServiceTest {
     void uploadImage() throws IOException {
         MockMultipartFile mockMultipartFile = new MockMultipartFile("file", "test".getBytes());
         when(cloudinary.uploader()).thenReturn(uploader);
-        when(uploader.upload(any(), any())).thenReturn(Map.of("url", "test-url"));
+        when(uploader.upload(any(), any())).thenReturn(Map.of("url", ""));
         String actual = cloudinaryService.uploadImage(mockMultipartFile);
         verify(uploader).upload(any(), any());
-        assertEquals("test-url", actual);
+        assertEquals("", actual);
     }
 }

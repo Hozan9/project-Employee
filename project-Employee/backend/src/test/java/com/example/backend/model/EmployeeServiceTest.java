@@ -1,13 +1,15 @@
 package com.example.backend.model;
+
 import com.example.backend.service.IdService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -18,7 +20,6 @@ class EmployeeServiceTest {
     private  final CloudinaryService cloudinaryService = mock(CloudinaryService.class);
      EmployeeService employeeService = new EmployeeService(employeeRepository,idService,cloudinaryService);
     private Employee employee;
-    MultipartFile image = null;
     @BeforeEach
     void setUp() {
 
@@ -78,9 +79,9 @@ class EmployeeServiceTest {
         //When
         Employee actual = employeeService.saveEmployee(employee,null);
         //Then
-        verify(idService).createId(); // id  drwst bkait
-      verify(employeeRepository).save(employee); //krekarakan la REpo xazn bkait
-        assertThat(actual).isEqualTo(employee); // krekara xazn krawakanman bdaitawa
+        verify(idService).createId();
+      verify(employeeRepository).save(employee);
+        assertThat(actual).isEqualTo(employee);
     }
    @Test
     void updateEmployeeWhenEmployeeIdExists() {
@@ -91,15 +92,15 @@ class EmployeeServiceTest {
         Employee actual = employeeService.update(employee);
         //Then
         Employee expected = employee;
-        verify(employeeRepository).save(employee); // Repo aktu
-        assertThat(actual).isEqualTo(expected);//AkK Mit ZÜ
+        verify(employeeRepository).save(employee);
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test
     void deleteEmployeeWhenEmployeeIdExists() {
       employeeRepository.save(employee);
        employeeService.deleteEmployee(employee.id());
-        verify(employeeRepository).deleteById (employee.id()); // Repo MIt LÖ
+        verify(employeeRepository).deleteById (employee.id());
     }
 }
 

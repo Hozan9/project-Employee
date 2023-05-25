@@ -7,11 +7,13 @@ type Props ={
     deleteEmployee:(id: string) => void
 }
 export default function ListEmployeeComponent(props: Props) {
+
     function onDeleteClick( id:string) {
         props.deleteEmployee(id)
     }
           return (
             <div className={"container"}>
+
                 <NavLink className={"AddEmployee"} to={"/add-employee"}>
                     Add Employee </NavLink>
                     <h2 className={"ListEmployee"}>List Employee</h2>
