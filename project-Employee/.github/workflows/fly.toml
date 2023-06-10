@@ -1,4 +1,4 @@
-app = "hh-23-1-todo-app"
+app = "project-Employee"
 kill_signal = "SIGINT"
 kill_timeout = 5
 primary_region = "ams"

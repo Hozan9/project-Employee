@@ -3,7 +3,6 @@ import React, { useEffect, useState} from "react";
 import {NewEmployee} from "../model/employee";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-
  type SaveEmployeeProps = {
     addEmployee: (newEmployee: NewEmployee) => void,
     updateEmployee: (updateEmployee: { firstName: string;
@@ -11,7 +10,6 @@ import axios from "axios";
         email: string; url: string }) => void
  }
 const BASE_URL = "/api/employees";
-
 export default function AddEmployeeComponent(props: SaveEmployeeProps) {
     //variables and method to collect and store inputs
     const [firstName, setFirstName] = useState<string>("");
@@ -20,10 +18,9 @@ export default function AddEmployeeComponent(props: SaveEmployeeProps) {
     const navigate = useNavigate();
     const newEmployee: NewEmployee = {"firstName": firstName,
         "lastName": lastName, "email": email}
-
    const [url] = useState<string>("")
-
     const {id} = useParams<{ id: string }>()
+
     function onSaveEmployee(error: React.MouseEvent<HTMLButtonElement>) {
         error.preventDefault();
 
@@ -46,27 +43,24 @@ export default function AddEmployeeComponent(props: SaveEmployeeProps) {
             return "Add Employee";
         }
     }
-
-    useEffect(() => {
-        if (id) {
-            loadEmployeeById(id)
-        }
-    },
-        [id])
-
-    function loadEmployeeById(id: string) {
-         axios.get(`${BASE_URL}/${id}` )
-            .then((response) => {
-                setFirstName(response.data.firstName);
-                setLastName(response.data.lastName);
-                setEmail(response.data.email);
-            })
-            .catch(error => {
-console.log(error);
-alert(error)
-            });
-    }
-
+   useEffect(() => {
+          if (id) {
+              loadEmployeeById(id)
+          }
+      },
+          [id])
+      function loadEmployeeById(id: string) {
+           axios.get(`${BASE_URL}/${id}` )
+              .then((response) => {
+                  setFirstName(response.data.firstName);
+                  setLastName(response.data.lastName);
+                  setEmail(response.data.email);
+              })
+              .catch(error => {
+  console.log(error);
+  alert(error)
+              });
+      }
     return (
         <div>
             <div className={"container"}>

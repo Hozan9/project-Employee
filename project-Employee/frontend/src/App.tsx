@@ -13,11 +13,6 @@ import ProtectedRoutes from "./ProtectedRoutes";
 function App() {
     const {user, login} = useUser()
     const [employees,setEmployees] = useState<employee[]>([])
-const [url,setUrl] = useState()
-
-
-
-
     useEffect(() => {
         loadAllEmployees()
     },[])
@@ -27,13 +22,15 @@ const [url,setUrl] = useState()
             .catch((error)=> {console.error(error)})
     }
     function addEmployee(newEmployee: NewEmployee) {
-        axios.post("/api/employees",newEmployee)
+            const data = new FormData()
+            data.append("data",new Blob([JSON.stringify(newEmployee)],{'type':"application/json"}))
+        axios.post("/api/employees",data)
             .then((addEmployeeResponse) =>{
                 setEmployees([addEmployeeResponse.data,...employees])
             })
             .catch(console.error)
     }
-    function updateEmployee(employee: employee) : void{
+    function updateEmployee(employee: employee) {
         axios.put(`/api/employees/${employee.id}`, employee)
             .then((putEmployeeResponse) => {
                 setEmployees(employees.map(currentEmployee => {
@@ -59,8 +56,8 @@ const [url,setUrl] = useState()
             <HeaderComponent />
             <div className="container">
                 <Routes>
-                    <Route path="/" element={<ListEmployeeComponent employee={employees} deleteEmployee={deleteEmployee} />}  />
-                    <Route path="/employees" element={<ListEmployeeComponent employee={employees} deleteEmployee={deleteEmployee} />} />
+                    <Route path="/" element={<ListEmployeeComponent employees={employees} deleteEmployee={deleteEmployee} />}  />
+                    <Route path="/employees" element={<ListEmployeeComponent employees={employees} deleteEmployee={deleteEmployee} />} />
                     <Route path="/add-employee" element={<AddEmployeeComponent addEmployee={addEmployee}
                                                                                updateEmployee={updateEmployee}
                                                                                   />} />
@@ -75,5 +72,4 @@ const [url,setUrl] = useState()
         </BrowserRouter>
   )
 }
-
 export default App;

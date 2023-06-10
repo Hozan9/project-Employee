@@ -1,13 +1,15 @@
 package com.example.backend.model;
+
 import com.example.backend.service.IdService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -18,9 +20,9 @@ class EmployeeServiceTest {
     private  final CloudinaryService cloudinaryService = mock(CloudinaryService.class);
      EmployeeService employeeService = new EmployeeService(employeeRepository,idService,cloudinaryService);
     private Employee employee;
-    MultipartFile image = null;
     @BeforeEach
     void setUp() {
+
         employee = new Employee("123", "Lani", "lani", "lani@gmail.com","url");
     }
     @Test
@@ -98,7 +100,7 @@ class EmployeeServiceTest {
     void deleteEmployeeWhenEmployeeIdExists() {
       employeeRepository.save(employee);
        employeeService.deleteEmployee(employee.id());
-        verify(employeeRepository).deleteById(employee.id());
+        verify(employeeRepository).deleteById (employee.id());
     }
 }
 

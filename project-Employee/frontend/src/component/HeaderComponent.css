@@ -1,5 +1,5 @@
 .HeaderContainer {
-    height: 5vh;
+    height: 7vh;
     display: flex;
     align-items: center;
     background-color: #1f1f1f;
@@ -7,6 +7,14 @@
     padding: 1rem;
     font-family: Monospaced;
     font-size: xx-large;
+    justify-content: space-between;
+}
+.Employee {
+    margin: 1px;
+    font-size: 20px;
+    padding: 10px;
+    right: 25px;
+
 }
 .LoginPage {
     text-decoration: none;
@@ -16,20 +24,37 @@
     border: 4px double #cccccc;
     color: #eeeeee;
     text-align: center;
-    font-size: 28px;
+    font-size: 20px;
 
-    padding: 10px ;
-    width: 100px;
+    padding: 5px ;
+    width: 80px;
 
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
     cursor: pointer;
-    margin: 20px  ;
+    margin: 10px  ;
 }
 .LoginPage:hover{
     background-color: rgba(40, 47, 52, 0.85);
+}
+/*Bild bearbeitet*/
+.imagecontainer {
+    text-align:right ;
+    width: 50px;
+    height: 5px;
+    margin: 120px 450px 50px;
+}
+.postImage{
+    margin-right: 100px;
+    scroll-margin-right: inherit;
+}
+.Img {
+
+    border-radius: 50%;
+height: 50px;
+width: 50px;
+
 
 }
-

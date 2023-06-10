@@ -14,23 +14,11 @@ public class EmployeeService{
     private final IdService idService;
     private final CloudinaryService cloudinaryService;
     public List<Employee> findAll(){
-
         return employeeRepository.findAll();
     }
     public Employee findById(String id){
         return employeeRepository.findById(id).orElseThrow();
     }
-
-   /* public Employee saveEmployee(Employee employee) {
-        String newId = idService.createId();
-        Employee newEmployee = new Employee(
-                newId,
-                employee.firstName(),
-                employee.lastName(),
-                employee.email()
-        );
-        return employeeRepository.save(newEmployee);
-    }*/
     public Employee saveEmployee(Employee employee, MultipartFile image) throws IOException {
         String newId = idService.createId();
         Employee newEmployee = new Employee(
@@ -46,12 +34,12 @@ public class EmployeeService{
         }
         return employeeRepository.save(newEmployee);
     }
-
    public Employee update(Employee employee){
 
-        return employeeRepository.save(employee);
+       return employeeRepository.save(employee);
     }
     public void deleteEmployee(String id){
+
         employeeRepository.deleteById(id);
     }
 }

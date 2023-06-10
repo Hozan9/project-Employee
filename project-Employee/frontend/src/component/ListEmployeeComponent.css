@@ -1,16 +1,17 @@
 .AddEmployee {
-    line-height: 7vh;
+    line-height: 30px;
     color: rgba(255, 255, 255, 0.73);
     border: 1px rgba(40, 47, 52, 0.85) solid;
     background-color: black;
     font-size: 20px;
-    padding: 15px 5px;
+    padding: 10px 10px;
     margin-left: 900px;
     display: block;
     text-decoration: none;
     text-align: center;
-}
+    border: 10px double #cccccc;
 
+}
 .AddEmployee:hover {
     background-color: rgba(0, 0, 0, 0.38);
 }
@@ -26,8 +27,6 @@
     font-weight: bolder;
     text-align: center;
 }
-
-
 .container {
     margin: 0;
     padding: 0;
@@ -59,7 +58,6 @@ margin: 3rem auto;
 }
 .update{
     text-decoration: none;
-
     font-size: 20px;
     line-height: 5vh;
     padding: 10px 28px;

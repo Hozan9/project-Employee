@@ -53,18 +53,6 @@ form {
     padding: 1.5rem;
     line-height: 50px;
 }
-/* Center the avatar image inside this container */
-.imagecontainer {
-    text-align:right ;
-    margin: 2px 0  2px;
-    width: 300px;
-    height: 150px;
-}
-/* Avatar image */
-img.avatar {
-    width: 50%;
-    border-radius: 50%;
-}
 /* Add padding to containers */
 .container {
     padding: 20px;
